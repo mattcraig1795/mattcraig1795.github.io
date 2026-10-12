@@ -1,0 +1,88 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8"> 
+    <title>HW 5 - Dashboard</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+        }
+
+        .sidebar {
+            width: 25%;
+            background-color: #4a2632;;
+            color: white;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .sidebar h1 {
+            text-align: center;
+            font-size: 32px;
+            margin-bottom: 40px;
+        }
+
+        nav a {
+            display: block;
+            color: white;
+            text-decoration: none;
+            font-size: 20px;
+            padding: 15px 20px;
+            margin-bottom: 10px;
+            border-radius: 10px;
+        }
+
+        nav a:hover {
+            background-color: #85465a;
+        }
+
+        nav a.active {
+            background-color: #85465a;
+        }
+
+        .main-content {
+            width: 75%;
+            background-color: #f5efe3;
+            padding: 40px;
+            box-sizing: border-box;
+        }
+
+        .main-content h1 {
+            font-size: 36px;
+            color: #702f45;
+        }
+
+        .main-content p {
+            font-size: 20px;
+            color: #455a64;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="sidebar">
+        <h1>Matt's App</h1>
+        <nav>
+            <a href="#dashboard">🏠 Dashboard</a>
+            <a href="#analytics">📊 Analytics</a>
+            <a href="#projects">📁 Projects</a>
+            <a href="#team">👥 Team</a>
+            <a href="#messages">📧 Messages</a>
+            <a href="#settings">⚙️ Settings</a>
+            <a href="#documents">📄 Documents</a>
+            <a href="#logout">🚪 Logout</a>
+        </nav>
+    </div>
+    <div class="main-content" id="dashboard">
+        <h1>Welcome to the Dashboard</h1>
+        <p>
+            Click on the links in the vertical navigation bar on the left.
+        </p>
+    </div>
+</body>
+</html>
