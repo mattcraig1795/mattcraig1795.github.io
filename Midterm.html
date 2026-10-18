@@ -1,0 +1,238 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>The Cool Taco</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background-color: #fff8eb;
+        }
+
+        nav {
+            background-color: #bb382b;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            padding: 15px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 20px;
+            padding: 15px;
+            display: block;
+        }
+
+        nav a:hover {
+            background-color: #e74c3c;
+        }
+
+        .logo {
+            color: #ffcc00;
+            font-size: 26px;
+            font-weight: bold;
+        }
+
+        .logo img {
+            width: 65px;
+            vertical-align: middle;
+        }
+
+        .dropdown {
+            position: relative;
+        }
+
+        .submenu {
+            display: none;
+            position: absolute;
+            background-color: #292929;
+            width: 200px;
+            box-shadow: 0 8px 15px #888;
+        }
+
+        .submenu a {
+            border-bottom: 1px solid #555;
+        }
+
+        .dropdown:hover .submenu {
+            display: block;
+        }
+
+        main {
+            text-align: center;
+            padding: 30px;
+        }
+
+        main p {
+            max-width: 700px;
+            margin: 20px auto;
+            line-height: 1.6;
+        }
+
+        main h1 {
+            color: #14ab2d;
+            font-size: 36px;
+        }
+
+        main h2 {
+            margin-top: 40px;
+            color: #bb382b;
+        }
+
+        .food-img {
+            width: 250px;
+            height: 200px;
+            object-fit: cover;
+            margin: 15px;
+            border-radius: 10px;
+            transition: 0.3s;
+        }
+
+        .food-img:hover {
+            transform: scale(1.1);
+        }
+
+        table {
+            margin: 20px auto;
+            border-collapse: collapse;
+            width: 60%;
+        }
+
+        th, td {
+            border: 2px solid #bb382b;
+            padding: 12px;
+        }
+
+        th {
+            background-color: #bb382b;
+            color: white;
+        }
+
+        /* Button */
+        .button {
+            display: inline-block;
+            background-color: #bb382b;
+            color: white;
+            padding: 15px 25px;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: opacity 0.3s;
+        }
+
+        .button:hover {
+            opacity: 0.5;
+        }
+
+        footer {
+            background-color: #14ab2d;
+            color: white;
+            text-align: center;
+            padding: 15px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <div class="logo">
+            <img src="cooltaco.png" alt="Cool Taco">
+            THE COOL TACO
+        </div>
+
+        <a href="#home">Home</a>
+
+        <div class="dropdown">
+            <a href="#menu">Menu</a>
+            <div class="submenu">
+                <a href="#menu">Tacos</a>
+                <a href="#menu">Burritos</a>
+                <a href="#menu">Quesadillas</a>
+                <a href="#menu">Drinks</a>
+            </div>
+        </div>
+
+        <div class="dropdown">
+            <a href="#specials">Specials</a>
+            <div class="submenu">
+                <a href="#taco-tuesday">Taco Tuesday</a>
+                <a href="#cheat-day">Cheat Day Deals</a>
+            </div>
+        </div>
+
+        <a href="#locations">Locations</a>
+
+        <div class="dropdown">
+            <a href="#about">About Us</a>
+            <div class="submenu">
+                <a href="#about">Our Story</a>
+                <a href="#about">Our Mission</a>
+            </div>
+        </div>
+
+        <a href="#order">Order Now</a>
+    </nav>
+
+    <main id="home">
+        <h1>Welcome to The Cool Taco!</h1>
+        <h2>Good Tacos. Bad Decisions. Zero Regrets.</h2>
+
+        <p>
+            Welcome to The Cool Taco, where we make ridiculously loaded tacos and
+            massive burritos that have enough cheese to make your own doctor nervous.
+            Our mission is simple: make junk food fun and make sure nobody leaves hungry.
+        </p>
+
+        <h2 id="menu">Our Food</h2>
+
+        <img src="quesadilla.jpg" class="food-img" alt="Quesadilla">
+        <img src="burrito.jpg" class="food-img" alt="Burrito">
+
+        <h2>Menu Favorites</h2>
+
+        <table>
+            <tr>
+                <th>Food</th>
+                <th>Price</th>
+            </tr>
+            <tr>
+                <td>Loaded Tacos</td>
+                <td>$5.99</td>
+            </tr>
+            <tr>
+                <td>Godzilla Burrito</td>
+                <td>$12.99</td>
+            </tr>
+            <tr>
+                <td>Dirty Quesadilla</td>
+                <td>$8.99</td>
+            </tr>
+        </table>
+
+        <h2 id="specials">Specials</h2>
+        <h3 id="taco-tuesday">Taco Tuesday</h3>
+        <p>Buy 2 tacos and get the 3rd free!</p>
+
+        <h3 id="cheat-day">Cheat Day Deals</h3>
+        <p> Get a Godzilla Burrito with chips and drink for just $13.99!! (Your diet can start tomorrow)</p>
+        <h2 id="locations">Locations</h2>
+        <p>Follow your heart to find us!</p>
+
+        <h2 id="about">About Us</h2>
+        <p>We take our tacos seriously. Ourselves? Not so much.</p>
+
+        <h2 id="order">Ready to Eat?</h2>
+        <a href="#menu" class="button">ORDER NOW</a>
+    </main>
+
+    <footer>
+        &copy; 2026 Matthew Craig 
+    </footer>
+
+</body>
+</html>
