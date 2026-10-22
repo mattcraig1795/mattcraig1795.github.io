@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CSS Sprite Navigation Demo</title>
+  <title>2-Level CSS Sprite Navigation</title>
   <style>
     * {
       margin: 0;
@@ -12,147 +12,226 @@
     }
 
     body {
-      font-family: system-ui, -apple-system, sans-serif;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
       background: #f0f2f5;
       color: #222;
       line-height: 1.6;
+      min-height: 100vh;
     }
 
-    /* ========== Horizontal Navigation with CSS Sprites ========== */
+    /* ========== 2-Level Horizontal Navigation with CSS Sprites ========== */
     nav {
       background: #1a1a2e;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.35);
+      position: relative;
+      z-index: 100;
     }
 
-    nav ul {
+    nav > ul {
       list-style: none;
       display: flex;
       justify-content: center;
-      max-width: 900px;
+      max-width: 960px;
       margin: 0 auto;
     }
 
-    nav li {
+    nav > ul > li {
+      position: relative;
       flex: 1;
+      max-width: 200px;
     }
 
-    nav a {
+    /* Top-level links */
+    nav > ul > li > a {
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 10px;
-      padding: 16px 12px;
-      color: #eee;
+      padding: 18px 14px;
+      color: #e8e8e8;
       text-decoration: none;
       font-weight: 500;
       font-size: 15px;
       transition: background 0.2s, color 0.2s;
       border-right: 1px solid #2a2a40;
+      white-space: nowrap;
     }
 
-    nav li:last-child a {
+    nav > ul > li:last-child > a {
       border-right: none;
     }
 
-    nav a:hover {
+    nav > ul > li > a:hover,
+    nav > ul > li:hover > a {
       background: #16213e;
       color: #00d4ff;
     }
 
-    /* Sprite icon base */
-    .icon {
+    /* Sprite icons (from nav-sprites.png) */
+    .sprite {
       display: inline-block;
       width: 24px;
       height: 24px;
-      background-image: url('https://cdn.jsdelivr.net/gh/FortAwesome/Font-Awesome@5.15.4/sprites/solid.svg');
-      /* Fallback solid color sprite simulation using a public sprite sheet approach */
-      background-size: 24px 120px; /* height covers multiple icons */
+      background-image: url("nav-sprites.png");
       background-repeat: no-repeat;
-    }
-
-    /* Individual sprite positions (simulated with background-position) */
-    .icon-home   { background-position: 0 0; }
-    .icon-about  { background-position: 0 -24px; }
-    .icon-services { background-position: 0 -48px; }
-    .icon-contact { background-position: 0 -72px; }
-
-    /* Better reliable sprite approach using a single PNG sprite sheet */
-    /* Using a real public CSS sprite example */
-    .sprite {
-      display: inline-block;
-      width: 32px;
-      height: 32px;
-      background-image: url('https://www.w3schools.com/css/img_navsprites.gif');
-      background-repeat: no-repeat;
+      background-size: 96px 24px; /* 4 icons * 24px */
+      flex-shrink: 0;
     }
 
     .sprite-home     { background-position: 0 0; }
-    .sprite-about    { background-position: -91px 0; }
-    .sprite-services { background-position: -182px 0; }
-    .sprite-contact  { background-position: -273px 0; }
+    .sprite-about    { background-position: -24px 0; }
+    .sprite-services { background-position: -48px 0; }
+    .sprite-contact  { background-position: -72px 0; }
+
+    /* Dropdown arrow indicator */
+    .has-dropdown > a::after {
+      content: "▾";
+      font-size: 11px;
+      margin-left: 4px;
+      opacity: 0.7;
+    }
+
+    /* ========== Second level (dropdown) ========== */
+    .dropdown {
+      list-style: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: #16213e;
+      min-width: 100%;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-6px);
+      transition: opacity 0.2s, visibility 0.2s, transform 0.2s;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+      border-radius: 0 0 8px 8px;
+      overflow: hidden;
+      z-index: 200;
+    }
+
+    nav > ul > li:hover > .dropdown {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .dropdown li a {
+      display: block;
+      padding: 12px 18px;
+      color: #ccc;
+      text-decoration: none;
+      font-size: 14px;
+      border-bottom: 1px solid #1f2a44;
+      transition: background 0.15s, color 0.15s, padding-left 0.15s;
+    }
+
+    .dropdown li:last-child a {
+      border-bottom: none;
+    }
+
+    .dropdown li a:hover {
+      background: #0f3460;
+      color: #00d4ff;
+      padding-left: 24px;
+    }
 
     /* ========== Main content ========== */
     main {
-      max-width: 900px;
-      margin: 40px auto;
+      max-width: 960px;
+      margin: 48px auto;
       padding: 0 20px;
     }
 
     h1 {
       text-align: center;
-      margin-bottom: 30px;
+      margin-bottom: 12px;
       color: #1a1a2e;
+      font-size: 1.9rem;
+    }
+
+    .intro {
+      text-align: center;
+      color: #555;
+      margin-bottom: 36px;
+      max-width: 640px;
+      margin-left: auto;
+      margin-right: auto;
     }
 
     .images {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 24px;
-      margin-top: 30px;
+      gap: 28px;
     }
 
     .images figure {
-      background: white;
-      border-radius: 12px;
+      background: #fff;
+      border-radius: 14px;
       overflow: hidden;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-      transition: transform 0.2s;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+      transition: transform 0.25s, box-shadow 0.25s;
     }
 
     .images figure:hover {
-      transform: translateY(-4px);
+      transform: translateY(-6px);
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.15);
     }
 
     .images img {
       width: 100%;
-      height: 260px;
+      height: 280px;
       object-fit: cover;
       display: block;
     }
 
     .images figcaption {
-      padding: 14px;
+      padding: 16px;
       text-align: center;
       font-size: 14px;
       color: #555;
+      font-weight: 500;
     }
 
     footer {
       text-align: center;
-      padding: 30px;
-      color: #666;
-      font-size: 14px;
+      padding: 36px 20px;
+      color: #777;
+      font-size: 13px;
     }
 
-    /* Responsive */
-    @media (max-width: 600px) {
-      nav ul {
+    /* Responsive: stack nav on small screens */
+    @media (max-width: 640px) {
+      nav > ul {
         flex-direction: column;
       }
-      nav a {
+
+      nav > ul > li {
+        max-width: none;
+      }
+
+      nav > ul > li > a {
         border-right: none;
         border-bottom: 1px solid #2a2a40;
+        justify-content: flex-start;
+        padding-left: 24px;
       }
+
+      .dropdown {
+        position: static;
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+        box-shadow: none;
+        border-radius: 0;
+        display: none; /* hide by default on mobile; show on hover still works on desktop */
+      }
+
+      nav > ul > li:hover > .dropdown,
+      nav > ul > li:focus-within > .dropdown {
+        display: block;
+      }
+
       .images {
         grid-template-columns: 1fr;
       }
@@ -161,30 +240,43 @@
 </head>
 <body>
 
-  <!-- Horizontal Navigation Bar with CSS Sprites -->
+  <!-- 2-Level Horizontal Navigation with CSS Sprites -->
   <nav>
     <ul>
       <li>
         <a href="#home">
-          <span class="sprite sprite-home"></span>
+          <span class="sprite sprite-home" aria-hidden="true"></span>
           Home
         </a>
       </li>
-      <li>
+
+      <li class="has-dropdown">
         <a href="#about">
-          <span class="sprite sprite-about"></span>
+          <span class="sprite sprite-about" aria-hidden="true"></span>
           About
         </a>
+        <ul class="dropdown">
+          <li><a href="#team">Our Team</a></li>
+          <li><a href="#history">History</a></li>
+          <li><a href="#mission">Mission</a></li>
+        </ul>
       </li>
-      <li>
+
+      <li class="has-dropdown">
         <a href="#services">
-          <span class="sprite sprite-services"></span>
+          <span class="sprite sprite-services" aria-hidden="true"></span>
           Services
         </a>
+        <ul class="dropdown">
+          <li><a href="#web">Web Design</a></li>
+          <li><a href="#seo">SEO</a></li>
+          <li><a href="#support">Support</a></li>
+        </ul>
       </li>
+
       <li>
         <a href="#contact">
-          <span class="sprite sprite-contact"></span>
+          <span class="sprite sprite-contact" aria-hidden="true"></span>
           Contact
         </a>
       </li>
@@ -192,27 +284,28 @@
   </nav>
 
   <main>
-    <h1>Welcome to the Demo Page</h1>
-    <p style="text-align:center; margin-bottom: 20px;">
-      This page features a horizontal navigation bar that uses a single CSS sprite image for the icons.
+    <h1>2-Level Sprite Navigation Demo</h1>
+    <p class="intro">
+      Hover over <strong>About</strong> or <strong>Services</strong> to open the second-level dropdown menus.
+      Icons are served from a single CSS sprite image (<code>nav-sprites.png</code>).
     </p>
 
     <!-- Two Images -->
     <div class="images">
       <figure>
-        <img src="https://picsum.photos/id/1015/600/400" alt="Mountain landscape">
+        <img src="https://picsum.photos/id/1015/600/400" alt="Mountain landscape at dusk" width="600" height="400">
         <figcaption>Image 1 – Mountain Landscape</figcaption>
       </figure>
 
       <figure>
-        <img src="https://picsum.photos/id/1016/600/400" alt="Coastal view">
+        <img src="https://picsum.photos/id/1016/600/400" alt="Rocky coastal shoreline" width="600" height="400">
         <figcaption>Image 2 – Coastal View</figcaption>
       </figure>
     </div>
   </main>
 
   <footer>
-    CSS Sprite Navigation Example • Built with pure HTML & CSS
+    Pure HTML + CSS • Horizontal 2-level navigation with CSS image sprites
   </footer>
 
 </body>
